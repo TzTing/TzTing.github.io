@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>My awesome title</title>
-    <url>/2016/10/12/ting/</url>
+    <title>Quarte任务调度</title>
+    <url>/2020/04/06/two/</url>
+    <content><![CDATA[<h1 id="Quarte任务调度"><a href="#Quarte任务调度" class="headerlink" title="Quarte任务调度"></a>Quarte任务调度</h1><h3 id="1，是什么？"><a href="#1，是什么？" class="headerlink" title="1，是什么？"></a>1，是什么？</h3><p>它是一个任务调度器，支持事务和集群， 可以执行上万个任务</p>
+<h3 id="2-怎么做"><a href="#2-怎么做" class="headerlink" title="2,怎么做"></a>2,怎么做</h3><p>  主要有三个组件：<br>   JobDetail：任务<br>   Trigger：触发器<br>   scheduler：调度器</p>
+<h3 id="3-为什么？"><a href="#3-为什么？" class="headerlink" title="3,为什么？"></a>3,为什么？</h3><p>quartz 可以运行嵌入在另一个独立式应用程序<br>quartz 可以在服务器启动被实例化<br>quartz 可以独立运行<br>quartz 可以在集群中运行</p>
+]]></content>
+      <categories>
+        <category>java</category>
+        <category>入门</category>
+      </categories>
+      <tags>
+        <tag>简单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一篇文章</title>
+    <url>/2020/04/05/ting/</url>
     <content><![CDATA[<p>最喜欢小家伙了</p>
 ]]></content>
       <categories>
