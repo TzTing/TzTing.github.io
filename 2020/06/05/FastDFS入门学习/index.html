@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FastDFS入门学习 - Tz</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Tz,"> 
+    <meta name="description" content="FastDFS快速入门1，FastDFS是什么？   是一个分布式文件系统，解决了大文件的存储和负载均衡 实现文件同步，文件存储，文件访问服务端主要有两个角色：跟踪器，存储节点
+2，为什么使用Fas,"> 
+    <meta name="author" content="Tz"> 
+    <link rel="alternative" href="atom.xml" title="Tz" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tz</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">FastDFS入门学习</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">FastDFS入门学习</h1>
+        <div class="stuff">
+            <span>六月 05, 2020</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="FastDFS快速入门"><a href="#FastDFS快速入门" class="headerlink" title="FastDFS快速入门"></a>FastDFS快速入门</h1><p>1，FastDFS是什么？<br>   是一个分布式文件系统，解决了大文件的存储和负载均衡 实现文件同步，文件存储，文件访问<br>服务端主要有两个角色：跟踪器，存储节点</p>
+<p>2，为什么使用FastDFS？<br>  因为它是分布式的注重高可用 高性能<br>   可以是文件同步到其他服务实现图片共享，就是高可用</p>
+<p>3，怎么使用FastDFS？<br>docker安装</p>
+<p>上传交互过程：<br>client询问tracker上传到的storage<br>tracker返回一台可用的storage<br>client直接和storage通讯完成文件上传</p>
+<p>下载交互过程<br>client 询问 tracker 下载文件的 storage，参数为文件标识（卷名和文件名）<br>tracker 返回一台可用的 storage<br>client 直接和 storage 通讯完成文件下载</p>
+<p>为什么要结合nginx<br>fastdfs的tracker是简单的http服务器 不支持负载均衡</p>
+<h4 id="jdk中使用FastDFS"><a href="#jdk中使用FastDFS" class="headerlink" title="jdk中使用FastDFS"></a>jdk中使用FastDFS</h4><p>加入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.tobato<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastdfs-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.26.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分布式文件系统FDFS配置</span></span><br><span class="line"><span class="attr">fdfs:</span></span><br><span class="line">  <span class="attr">soTimeout:</span> <span class="number">1500</span> <span class="comment">#socket连接超时时长</span></span><br><span class="line">  <span class="attr">connectTimeout:</span> <span class="number">1500</span> <span class="comment">#连接tracker服务器超时时长</span></span><br><span class="line">  <span class="attr">reqHost:</span> <span class="number">192.168</span><span class="number">.25</span><span class="number">.132</span>   <span class="comment">#nginx访问地址</span></span><br><span class="line">  <span class="attr">reqPort:</span> <span class="number">8888</span>              <span class="comment">#nginx访问端口</span></span><br><span class="line">  <span class="attr">thumbImage:</span> <span class="comment">#缩略图生成参数，可选</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">150</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">150</span></span><br><span class="line">  <span class="attr">trackerList:</span> <span class="comment">#TrackerList参数,支持多个，我这里只有一个，如果有多个在下方加- x.x.x.x:port</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.25</span><span class="number">.132</span><span class="string">:22122</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.25</span><span class="number">.132</span><span class="string">:22122</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tz.adminmanager.common.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.github.tobato.fastdfs.domain.fdfs.StorePath;</span><br><span class="line"><span class="keyword">import</span> com.github.tobato.fastdfs.domain.fdfs.ThumbImageConfig;</span><br><span class="line"><span class="keyword">import</span> com.github.tobato.fastdfs.domain.proto.storage.DownloadCallback;</span><br><span class="line"><span class="keyword">import</span> com.github.tobato.fastdfs.service.FastFileStorageClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.io.FilenameUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created with IntelliJ IDEA.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Auther</span>: Tz</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2020/04/20/21:11</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastDFSUtil</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;fdfs.reqHost&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String reqHost;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;fdfs.reqPort&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String reqPort;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//面向普通应用的文件操作接口封装</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> FastFileStorageClient storageClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ThumbImageConfig thumbImageConfig; <span class="comment">//创建缩略图   ， 缩略图访问有问题，暂未解决</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">uploadFile</span><span class="params">(MultipartFile file)</span> <span class="keyword">throws</span> IOException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//上传文件</span></span><br><span class="line">        StorePath storePath = storageClient.uploadFile((InputStream) file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        String path = thumbImageConfig.getThumbImagePath(storePath.getPath());</span><br><span class="line">        System.out.println(<span class="string">"thumbImage :"</span> + path);  <span class="comment">//   缩略图访问有问题，暂未解决</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> getResAccessUrl(storePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delFile</span><span class="params">(String filePath)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        storageClient.deleteFile(filePath);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> InputStream <span class="title">download</span><span class="params">(String groupName, String path)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        InputStream ins = storageClient.downloadFile(groupName, path, <span class="keyword">new</span> DownloadCallback&lt;InputStream&gt;()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> InputStream <span class="title">recv</span><span class="params">(InputStream ins)</span> <span class="keyword">throws</span> IOException</span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="comment">// 将此ins返回给上面的ins</span></span><br><span class="line">                <span class="keyword">return</span> ins;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> ins;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 封装文件完整URL地址</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> storePath</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getResAccessUrl</span><span class="params">(StorePath storePath)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String fileUrl = <span class="string">"http://"</span> + reqHost + <span class="string">":"</span> + reqPort + <span class="string">"/"</span> + storePath.getFullPath();</span><br><span class="line">        <span class="keyword">return</span> fileUrl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://dl.stream.qqmusic.qq.com/M800000wqy9z0rSegD.mp3?guid=1026087320&vkey=2DA37E51FDEDAFE4D105D1E87CD561A01E9A7281ECD5484AB9553B219171CE02D6B93AD819AE1ECA47FE778A60FF275F2C7F4EFAE45BE06D&uin=0&fromtag=66'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='true'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

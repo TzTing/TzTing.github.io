@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>FastDFS入门学习</title>
+    <url>/2020/06/05/FastDFS%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="FastDFS快速入门"><a href="#FastDFS快速入门" class="headerlink" title="FastDFS快速入门"></a>FastDFS快速入门</h1><p>1，FastDFS是什么？<br>   是一个分布式文件系统，解决了大文件的存储和负载均衡 实现文件同步，文件存储，文件访问<br>服务端主要有两个角色：跟踪器，存储节点</p>
+<p>2，为什么使用FastDFS？<br>  因为它是分布式的注重高可用 高性能<br>   可以是文件同步到其他服务实现图片共享，就是高可用</p>
+<p>3，怎么使用FastDFS？<br>docker安装</p>
+<p>上传交互过程：<br>client询问tracker上传到的storage<br>tracker返回一台可用的storage<br>client直接和storage通讯完成文件上传</p>
+<p>下载交互过程<br>client 询问 tracker 下载文件的 storage，参数为文件标识（卷名和文件名）<br>tracker 返回一台可用的 storage<br>client 直接和 storage 通讯完成文件下载</p>
+<p>为什么要结合nginx<br>fastdfs的tracker是简单的http服务器 不支持负载均衡</p>
+<h4 id="jdk中使用FastDFS"><a href="#jdk中使用FastDFS" class="headerlink" title="jdk中使用FastDFS"></a>jdk中使用FastDFS</h4><p>加入依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.tobato<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastdfs-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.26.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 分布式文件系统FDFS配置</span></span><br><span class="line"><span class="attr">fdfs:</span></span><br><span class="line">  <span class="attr">soTimeout:</span> <span class="number">1500</span> <span class="comment">#socket连接超时时长</span></span><br><span class="line">  <span class="attr">connectTimeout:</span> <span class="number">1500</span> <span class="comment">#连接tracker服务器超时时长</span></span><br><span class="line">  <span class="attr">reqHost:</span> <span class="number">192.168</span><span class="number">.25</span><span class="number">.132</span>   <span class="comment">#nginx访问地址</span></span><br><span class="line">  <span class="attr">reqPort:</span> <span class="number">8888</span>              <span class="comment">#nginx访问端口</span></span><br><span class="line">  <span class="attr">thumbImage:</span> <span class="comment">#缩略图生成参数，可选</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">150</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">150</span></span><br><span class="line">  <span class="attr">trackerList:</span> <span class="comment">#TrackerList参数,支持多个，我这里只有一个，如果有多个在下方加- x.x.x.x:port</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.25</span><span class="number">.132</span><span class="string">:22122</span></span><br><span class="line">    <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.25</span><span class="number">.132</span><span class="string">:22122</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tz.adminmanager.common.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.github.tobato.fastdfs.domain.fdfs.StorePath;</span><br><span class="line"><span class="keyword">import</span> com.github.tobato.fastdfs.domain.fdfs.ThumbImageConfig;</span><br><span class="line"><span class="keyword">import</span> com.github.tobato.fastdfs.domain.proto.storage.DownloadCallback;</span><br><span class="line"><span class="keyword">import</span> com.github.tobato.fastdfs.service.FastFileStorageClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.io.FilenameUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.multipart.MultipartFile;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created with IntelliJ IDEA.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Auther</span>: Tz</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2020/04/20/21:11</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastDFSUtil</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;fdfs.reqHost&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String reqHost;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value</span>(<span class="string">"$&#123;fdfs.reqPort&#125;"</span>)</span><br><span class="line">    <span class="keyword">private</span> String reqPort;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//面向普通应用的文件操作接口封装</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> FastFileStorageClient storageClient;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ThumbImageConfig thumbImageConfig; <span class="comment">//创建缩略图   ， 缩略图访问有问题，暂未解决</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">uploadFile</span><span class="params">(MultipartFile file)</span> <span class="keyword">throws</span> IOException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//上传文件</span></span><br><span class="line">        StorePath storePath = storageClient.uploadFile((InputStream) file.getInputStream(), file.getSize(), FilenameUtils.getExtension(file.getOriginalFilename()), <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        String path = thumbImageConfig.getThumbImagePath(storePath.getPath());</span><br><span class="line">        System.out.println(<span class="string">"thumbImage :"</span> + path);  <span class="comment">//   缩略图访问有问题，暂未解决</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> getResAccessUrl(storePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">delFile</span><span class="params">(String filePath)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        storageClient.deleteFile(filePath);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> InputStream <span class="title">download</span><span class="params">(String groupName, String path)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        InputStream ins = storageClient.downloadFile(groupName, path, <span class="keyword">new</span> DownloadCallback&lt;InputStream&gt;()</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> InputStream <span class="title">recv</span><span class="params">(InputStream ins)</span> <span class="keyword">throws</span> IOException</span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">                <span class="comment">// 将此ins返回给上面的ins</span></span><br><span class="line">                <span class="keyword">return</span> ins;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> ins;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 封装文件完整URL地址</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> storePath</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getResAccessUrl</span><span class="params">(StorePath storePath)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String fileUrl = <span class="string">"http://"</span> + reqHost + <span class="string">":"</span> + reqPort + <span class="string">"/"</span> + storePath.getFullPath();</span><br><span class="line">        <span class="keyword">return</span> fileUrl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
     <title>第一篇文章</title>
     <url>/2020/04/05/ting/</url>
     <content><![CDATA[<p>最喜欢小家伙了</p>
@@ -35,35 +59,9 @@
       </tags>
   </entry>
   <entry>
-    <title>关于layer调用子窗口的内容</title>
-    <url>/2020/06/02/%E5%85%B3%E4%BA%8Elayer%E8%B0%83%E7%94%A8%E5%AD%90%E7%AA%97%E5%8F%A3%E7%9A%84%E5%86%85%E5%AE%B9/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">btn: [<span class="string">'同步未同步目录'</span>, <span class="string">'关闭'</span>],</span><br><span class="line">    btnAlign: <span class="string">'c'</span>,</span><br><span class="line">        yes: <span class="function"><span class="keyword">function</span> (<span class="params">index, layero</span>) </span>&#123;</span><br><span class="line">            layer.msg(<span class="string">'同步后的数据不可在修改,你确定要同步吗?'</span>, &#123;</span><br><span class="line">                time: <span class="number">0</span> <span class="comment">//不自动关闭</span></span><br><span class="line">                , <span class="attr">btn</span>: [<span class="string">'确定'</span>, <span class="string">'取消'</span>]</span><br><span class="line">                , <span class="attr">yes</span>: <span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</span><br><span class="line">                    layer.close(index);</span><br><span class="line">                    <span class="keyword">var</span> dataj = &#123;</span><br><span class="line">                        qzNo: data.qzNo,</span><br><span class="line">                        acceptanceNo:data.acceptanceNo</span><br><span class="line">                    &#125;</span><br><span class="line">        <span class="comment">//这里的yes:function()&#123;&#125;是父窗口的操作 不能干预到子窗口， 想父窗口进行完操作刷新子窗口怎么做呢？</span></span><br><span class="line">        <span class="comment">//需要获取子窗口的对象</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>解决方法:</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这是在上面yes:function()&#123;&#125;方法体里面的ajax请求</span></span><br><span class="line">$.bdy.ajax(&#123;</span><br><span class="line">    url:url,</span><br><span class="line">    data:dataj,</span><br><span class="line">    type:<span class="string">"post"</span>,</span><br><span class="line">    dataType:<span class="string">"json"</span>,</span><br><span class="line">    success:<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        layer.closeAll(<span class="string">"loading"</span>);</span><br><span class="line">        <span class="keyword">if</span>(result.flag)</span><br><span class="line">        &#123;</span><br><span class="line">            layer.msg(result.msg);</span><br><span class="line">            <span class="comment">//调用子窗口的refreshTable()方法</span></span><br><span class="line">            $(layero).find(<span class="string">"iframe"</span>)[<span class="number">0</span>].contentWindow.refreshTable()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            layer.msg(result.msg);</span><br><span class="line">            <span class="comment">//调用子窗口的refreshTable()方法</span></span><br><span class="line">            $(layero).find(<span class="string">"iframe"</span>)[<span class="number">0</span>].contentWindow.refreshTable()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//主要的是$(layero).find("iframe")[0].contentWindow获取子窗口 + 子页面方法名</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>bug</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>自定义排序</title>
     <url>/2020/05/17/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>swagger2</title>
-    <url>/2020/04/12/swagger2/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>java</category>
-        <category>文档</category>
-      </categories>
-      <tags>
-        <tag>swagger2</tag>
-        <tag>api</tag>
-      </tags>
   </entry>
   <entry>
     <title>Quarte任务调度</title>
@@ -78,6 +76,32 @@
       </categories>
       <tags>
         <tag>简单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于layer调用子窗口的内容</title>
+    <url>/2020/06/02/%E5%85%B3%E4%BA%8Elayer%E8%B0%83%E7%94%A8%E5%AD%90%E7%AA%97%E5%8F%A3%E7%9A%84%E5%86%85%E5%AE%B9/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">btn: [<span class="string">'同步未同步目录'</span>, <span class="string">'关闭'</span>],</span><br><span class="line">    btnAlign: <span class="string">'c'</span>,</span><br><span class="line">        yes: <span class="function"><span class="keyword">function</span> (<span class="params">index, layero</span>) </span>&#123;</span><br><span class="line">            layer.msg(<span class="string">'同步后的数据不可在修改,你确定要同步吗?'</span>, &#123;</span><br><span class="line">                time: <span class="number">0</span> <span class="comment">//不自动关闭</span></span><br><span class="line">                , <span class="attr">btn</span>: [<span class="string">'确定'</span>, <span class="string">'取消'</span>]</span><br><span class="line">                , <span class="attr">yes</span>: <span class="function"><span class="keyword">function</span> (<span class="params">index</span>) </span>&#123;</span><br><span class="line">                    layer.close(index);</span><br><span class="line">                    <span class="keyword">var</span> dataj = &#123;</span><br><span class="line">                        qzNo: data.qzNo,</span><br><span class="line">                        acceptanceNo:data.acceptanceNo</span><br><span class="line">                    &#125;</span><br><span class="line">        <span class="comment">//这里的yes:function()&#123;&#125;是父窗口的操作 不能干预到子窗口， 想父窗口进行完操作刷新子窗口怎么做呢？</span></span><br><span class="line">        <span class="comment">//需要获取子窗口的对象</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>解决方法:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这是在上面yes:function()&#123;&#125;方法体里面的ajax请求</span></span><br><span class="line">$.bdy.ajax(&#123;</span><br><span class="line">    url:url,</span><br><span class="line">    data:dataj,</span><br><span class="line">    type:<span class="string">"post"</span>,</span><br><span class="line">    dataType:<span class="string">"json"</span>,</span><br><span class="line">    success:<span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        layer.closeAll(<span class="string">"loading"</span>);</span><br><span class="line">        <span class="keyword">if</span>(result.flag)</span><br><span class="line">        &#123;</span><br><span class="line">            layer.msg(result.msg);</span><br><span class="line">            <span class="comment">//调用子窗口的refreshTable()方法</span></span><br><span class="line">            $(layero).find(<span class="string">"iframe"</span>)[<span class="number">0</span>].contentWindow.refreshTable()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            layer.msg(result.msg);</span><br><span class="line">            <span class="comment">//调用子窗口的refreshTable()方法</span></span><br><span class="line">            $(layero).find(<span class="string">"iframe"</span>)[<span class="number">0</span>].contentWindow.refreshTable()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//主要的是$(layero).find("iframe")[0].contentWindow获取子窗口 + 子页面方法名</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>bug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>swagger2</title>
+    <url>/2020/04/12/swagger2/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>java</category>
+        <category>文档</category>
+      </categories>
+      <tags>
+        <tag>swagger2</tag>
+        <tag>api</tag>
       </tags>
   </entry>
 </search>
