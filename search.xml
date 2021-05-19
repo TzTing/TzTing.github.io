@@ -104,4 +104,263 @@
         <tag>api</tag>
       </tags>
   </entry>
+  <entry>
+    <title>solr学习</title>
+    <url>/2020/06/05/solr%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>TCP/IP学习</title>
+    <url>/2020/06/10/TCP-IP%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>为上层协议隐藏通信细节</p>
+<p>比如：</p>
+<p>应用程序上层 – 不关心下层</p>
+<p>运输层-网络层-链路层——底层</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1591781678174.png" alt="1591781678174"></p>
+<p>TCP是在IP不安全传输上进行封装的安全传输协议</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1591781451381.png" alt="1591781451381"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>计算机科学笔记</title>
+    <url>/2020/06/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>计算机基础学习笔记<br>机械继电器： 用电来控制开关<br>真空管<br> 热电子管：</p>
+<p>第4节  二进制</p>
+<p>第5节  ：<br>数字相加 有算术逻辑单元来进行 alu<br>alu：就是计算机中运算的组件  负责计算机中所有的数字操作<br>alu有两个单元  一个算术单元，一个逻辑单元<br>alu有三个标志：<br>1，零测试电路<br>2，内存溢出标志<br>3，negative 消息<br> 半加器： 没有低位的输入（处理1个bit，2个输入）<br> 全加器：有低位的输入（处理1个bit,3个输入）<br>8位行波进位加法器：1个半加器，7个全加器<br>超前进位加法器：</p>
+<p>第6节<br>AND-OR锁存器:两个输入，<br> 1，设置： 要存的值<br>  2，复位：将存的值反转</p>
+<p>寄存器 由多个锁存器组成<br>门锁矩阵：16<em>16的队列<br>只需要16</em>2 + 1条允许写入线 + 1条允许读取线<br>（原始的8位寄存器需要16条线加一条允许写入线）<br>如何表示地址呢？ 行和列 最多是16 用4位来表示地址  </p>
+<p>为了将地址转换为行和列 需要用上多路复用器</p>
+<p>多路复用器工作原理：</p>
+<p>第7节：<br>cpu：中央处理器<br>cpu负责执行程序，程序由操作</p>
+<p>cpu状态：取指令—&gt;解码—&gt;执行  这一串操作是有速度的概念的 叫做时钟速度 单位是hz（赫兹，表示频率的单位） 一赫兹代表一秒一个周期</p>
+<p>第8节：<br>cpu是一块硬件 可以被软件控制<br>cpu的节奏由时钟来负责</p>
+<p>指令集，就是CPU中用来计算和控制计算机系统的一套指令的集合</p>
+<p>第12节   计算机科学，<br>算法：排序<br>算法的’输入大小’和’运行步骤’之间的关系叫算法’复杂度’表示运行速度的量级</p>
+<p>链表容易重新排序，两端缩减，分割，倒序等</p>
+<p>第17节<br>分立元件<br>集成电路(ic)</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Http学习</title>
+    <url>/2020/06/09/Http%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>状态码304 not modified 没有修改 取的是存在缓存中的内容， 请求时会带着资源的最后修改时间跟请求返回内容做比较</p>
+<p>301， 302， 307</p>
+<p>301：永久重定向 会丢失数据 不会响应第一次请求的信息</p>
+<p>302：临时重定向 会丢失数据 会响应第一次请求的信息（重定向默认是302）</p>
+<p>307：301和302的结合 307就是在重定向中依旧保持原有的数据</p>
+<p>“永久重定向（301）”和“临时重定向（302）”并不是那种时间上的“永久和临时”，不是说采用了临时重定向，再关机或者重启之后，重定向的功能就消失了。比如使用搜索引擎搜索“网易”，需要在地址栏输入<a href="http://www.163.net，那么以后即使www.163.net的地址改变了，输入www.163.com服务器会自动链接到新地址www.wangyi.com，那么这时候使用301的话，就等于直接登陆www.wangyi.com，彻底忘记www.163.net的存在。如果是302的话，会先www.163.net，然后www.163.net的服务器返回信息给客户机，你真实需要去的是www.wangyi.com，然后客户机再去跟www.wangyi.com产生链接。" target="_blank" rel="noopener">www.163.net，那么以后即使www.163.net的地址改变了，输入www.163.com服务器会自动链接到新地址www.wangyi.com，那么这时候使用301的话，就等于直接登陆www.wangyi.com，彻底忘记www.163.net的存在。如果是302的话，会先www.163.net，然后www.163.net的服务器返回信息给客户机，你真实需要去的是www.wangyi.com，然后客户机再去跟www.wangyi.com产生链接。</a></p>
+<p>referer: 显示一个地址</p>
+<p>expires:  Wed, 09 Jun 2021 16:00:00 GMT – – 缓存时间 在指定时间内都有效</p>
+<p>cache-control: max-age=60, s-maxage=90 – 强制不缓存</p>
+<h5 id="Http协议与内容压缩"><a href="#Http协议与内容压缩" class="headerlink" title="Http协议与内容压缩:"></a>Http协议与内容压缩:</h5><p>为了提交网页在网络上传输的速度 进行网页的压缩，</p>
+<p>常见压缩：gzip，deflate</p>
+<p>压缩过程：</p>
+<p>客户端(浏览器内核)：接收压缩包-解压-渲染页面</p>
+<p>一般压缩文本文件</p>
+<h4 id="分块传输，持久链接与反向ajax："><a href="#分块传输，持久链接与反向ajax：" class="headerlink" title="分块传输，持久链接与反向ajax："></a>分块传输，持久链接与反向ajax：</h4><p>websocket</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>&#39;sharding-JDBC&#39;</title>
+    <url>/2020/10/04/sharding-JDBC/</url>
+    <content><![CDATA[<p>1，sharding-JDBC:是什么</p>
+<p>  sharding-JDBC是Apach的顶级开源项目 他的主要作用就是对数据库进行分库分表</p>
+<p>2，为什么用sharding-JDBC</p>
+<p>  传统的保存数据到数据库中 如果数据量大 <strong>查询时间就会很慢</strong>，如果有<strong>联合查询可能会卡死</strong> 甚至吧系统拖垮，这个时候的解决方案就是分库分表（拆分）</p>
+<p>关于垂直拆分和水平拆分：</p>
+<p>​    垂直拆分：一个服务一个数据库</p>
+<p>​        订单系统 -&gt; db_order -&gt; table_order</p>
+<p>​    水平拆分： 拆库拆表</p>
+<p>​        db_order_0</p>
+<p>​            tb_order_0</p>
+<p>​            tb_order_1</p>
+<p>​            tb_order_2</p>
+<p>​        db_order_1</p>
+<p>​            tb_order_0</p>
+<p>​            tb_order_1</p>
+<p>​            tb_order_2</p>
+<p>mysql执行一条sql的过程如下：</p>
+<p>1、收到sql</p>
+<p>2、把sql放到排队队列中</p>
+<p>3、执行sql</p>
+<p>4、返回结果</p>
+<p>在这个执行过程中最花时间的地方在于：</p>
+<p>1.排队等待的时间，</p>
+<p>2.sql的执行时间。</p>
+<p>如果数据太多，一次执行的时间太长，等待的时间就越长，这也是我们为什么要分表的原因。</p>
+<p>3，怎么做？</p>
+<p>添加配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">shardingsphere:</span></span><br><span class="line">    <span class="attr">datasource:</span></span><br><span class="line">      <span class="attr">names:</span> <span class="string">ds0,ds1</span></span><br><span class="line">      <span class="attr">ds0:</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">        <span class="attr">jdbc-url:</span> <span class="string">jdbc:mysql://localhost:3306/sharding_order_0?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">com.zaxxer.hikari.HikariDataSource</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">      <span class="attr">ds1:</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">        <span class="attr">jdbc-url:</span> <span class="string">jdbc:mysql://localhost:3306/sharding_order_1?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai</span></span><br><span class="line">        <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">com.zaxxer.hikari.HikariDataSource</span></span><br><span class="line">        <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">props:</span></span><br><span class="line">      <span class="attr">sql:</span></span><br><span class="line">        <span class="attr">show:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">sharding:</span></span><br><span class="line">      <span class="comment">#绑定表规则列表</span></span><br><span class="line">      <span class="attr">binding-tables:</span> <span class="string">t_order</span></span><br><span class="line">      <span class="comment"># 分库策略 根据id取模确定数据进哪个数据库</span></span><br><span class="line">      <span class="attr">default-database-strategy:</span></span><br><span class="line">        <span class="attr">inline:</span></span><br><span class="line">          <span class="comment">#分片算法表达式, groovy</span></span><br><span class="line">          <span class="comment">#下面的配置则是根据id来分的</span></span><br><span class="line">          <span class="comment">#如果id为基数则是ds1</span></span><br><span class="line">          <span class="comment">#如果id为偶数则是ds0</span></span><br><span class="line">          <span class="attr">algorithm-expression:</span> <span class="string">ds$-&gt;&#123;id</span> <span class="string">%</span> <span class="number">2</span><span class="string">&#125;</span></span><br><span class="line">          <span class="attr">sharding-column:</span> <span class="string">id</span></span><br><span class="line">      <span class="comment"># 具体分表策略</span></span><br><span class="line">      <span class="attr">tables:</span></span><br><span class="line">        <span class="comment">#逻辑表名称</span></span><br><span class="line">        <span class="attr">t_order:</span></span><br><span class="line">          <span class="comment">#由数据源名+表名</span></span><br><span class="line">          <span class="attr">actual-data-nodes:</span> <span class="string">ds$-&gt;&#123;0..1&#125;.t_order_$-&gt;&#123;0..1&#125;</span></span><br><span class="line">          <span class="attr">key-generator:</span></span><br><span class="line">            <span class="attr">column:</span> <span class="string">id</span></span><br><span class="line">            <span class="attr">type:</span> <span class="string">SNOWFLAKE</span></span><br><span class="line">          <span class="comment"># 分表策略 根据id取模,确定数据最终落在那个表中</span></span><br><span class="line">          <span class="attr">table-strategy:</span></span><br><span class="line">            <span class="attr">inline:</span></span><br><span class="line">              <span class="comment">#分片算法表达式, groovy</span></span><br><span class="line">              <span class="comment">#下面的配置则是根据id来分的</span></span><br><span class="line">              <span class="comment">#如果id为基数则是t_order_1</span></span><br><span class="line">              <span class="comment">#如果id为偶数则是t_order_0</span></span><br><span class="line">              <span class="attr">algorithm-expression:</span> <span class="string">t_order_$-&gt;&#123;id</span> <span class="string">%</span> <span class="number">3</span><span class="string">&#125;</span></span><br><span class="line">              <span class="attr">sharding-column:</span> <span class="string">id</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>要注意主主重复的问题</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>&#39;音标学习&#39;</title>
+    <url>/2020/10/04/%E9%9F%B3%E6%A0%87%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>常见的区别：<br>dj音标 /e/   /eI/  /əʊ/<br>KK音标 /ʒ/ /e/   /o/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1601804997310.png" alt="1601804997310"></p>
+<h5 id="i-发音单词："><a href="#i-发音单词：" class="headerlink" title="i:  发音单词："></a>i:  发音单词：</h5><p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602081281131.png" alt="1602081281131"></p>
+<p>b<u>ee</u>  f<u>ee</u>  p<u>ea</u></p>
+<h5 id="I-发音单词："><a href="#I-发音单词：" class="headerlink" title="I 发音单词："></a>I 发音单词：</h5><p>l<u>i</u>t   h<u>i</u>t   f<u>i</u>sh</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602154331365.png" alt="1602154331365"></p>
+<h5 id="e-发音单词-（注意要区分的kk音标还是dj音标"><a href="#e-发音单词-（注意要区分的kk音标还是dj音标" class="headerlink" title="e 发音单词:  （注意要区分的kk音标还是dj音标)"></a>e 发音单词:  （注意要区分的kk音标还是dj音标)</h5><p>b<u>e</u>d  g<u>e</u>t  p<u>e</u>t</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602081207542.png" alt="1602081207542"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1601993904134.png" alt="1601993904134"></p>
+<h5 id="ae-发音单词"><a href="#ae-发音单词" class="headerlink" title="æ 发音单词"></a>æ 发音单词</h5><p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602170231044.png" alt="1602170231044"></p>
+<p>b<u>a</u>d f<u>a</u>t p<u>a</u>t</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1601994563823.png" alt="1601994563823"></p>
+<h5 id="ɜː-发音单词"><a href="#ɜː-发音单词" class="headerlink" title="ɜː 发音单词"></a>ɜː 发音单词</h5><p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602170543506.png" alt="1602170543506"></p>
+<p>h<u>er</u>  p<u>er</u>son l<u>ear</u>n</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602081130707.png" alt="1602081130707"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602081104163.png" alt="1602081104163"></p>
+<h5 id="ə-发音单词"><a href="#ə-发音单词" class="headerlink" title="ə 发音单词"></a>ə 发音单词</h5><p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602170769127.png" alt="1602170769127"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602171536006.png" alt="1602171536006"></p>
+<p><u>a</u>bout  probl<u>e</u>m eas<u>i</u>ly mem<u>o</u>ry s<u>u</u>pply  s<u>y</u>ringe</p>
+<h5 id="v-发音单词"><a href="#v-发音单词" class="headerlink" title="ʌ 发音单词"></a>ʌ 发音单词</h5><p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602255881822.png" alt="1602255881822"></p>
+<p>b<u>u</u>t h<u>u</u>t m<u>u</u>st</p>
+<h5 id="ɑː-发音单词"><a href="#ɑː-发音单词" class="headerlink" title="ɑː 发音单词"></a>ɑː 发音单词</h5><p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602255409402.png" alt="1602255409402"></p>
+<p>f<u>a</u>ther  f<u>a</u>st  gl<u>a</u>ss</p>
+<h5 id="o-发音单词"><a href="#o-发音单词" class="headerlink" title="ɔ: 发音单词"></a>ɔ: 发音单词</h5><p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602428296448.png" alt="1602428296448"></p>
+<p>c<u>augh</u>t  b<u>ough</u>t  l<u>aw</u></p>
+<p>ɒ 发音单词</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602427467797.png" alt="1602427467797"></p>
+<p>t<u>o</u>p  h<u>o</u>t  l<u>o</u>t</p>
+<p>u: 发音单词</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602427731947.png" alt="1602427731947"></p>
+<p>t<u>oo</u>  f<u>oo</u>d  l<u>oo</u>se</p>
+<p>ʊ 发音单词</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602427112635.png" alt="1602427112635"></p>
+<p>book  look  good</p>
+<p>ei ：发音单词</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602429246411.png" alt="1602429246411"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602429263575.png" alt="1602429263575"></p>
+<p>ai：发音单词</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602513067731.png" alt="1602513067731"></p>
+<p>ɔɪ ： </p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602513346923.png" alt="1602513346923"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602513362803.png" alt="1602513362803"></p>
+<p>aʊ</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602513557540.png" alt="1602513557540"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602513543673.png" alt="1602513543673"></p>
+<p>əʊ ： </p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602513736781.png" alt="1602513736781"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602513748264.png" alt="1602513748264"></p>
+<p>ɪə ： </p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602514305972.png" alt="1602514305972"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602514333320.png" alt="1602514333320"></p>
+<p>eə ： </p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603005686399.png" alt="1603005686399"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603005716915.png" alt="1603005716915"></p>
+<p>/ʊə/ ： </p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603005826807.png" alt="1603005826807"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603005895662.png" alt="1603005895662"></p>
+<p>p ： </p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603006238415.png" alt="1603006238415"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603006288036.png" alt="1603006288036"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603006400117.png" alt="1603006400117"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603010085189.png" alt="1603010085189"></p>
+<p>/b/ : 发音</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603010544540.png" alt="1603010544540"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603010770162.png" alt="1603010770162"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603010929269.png" alt="1603010929269"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603010944761.png" alt="1603010944761"></p>
+<p>/t/ 发音：</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603011290359.png" alt="1603011290359"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603011317633.png" alt="1603011317633"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603011416383.png" alt="1603011416383"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603012110282.png" alt="1603012110282"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603012219021.png" alt="1603012219021"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603012548427.png" alt="1603012548427"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603012529593.png" alt="1603012529593"></p>
+<p>/k/  </p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603012892521.png" alt="1603012892521"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603012930387.png" alt="1603012930387"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603012999981.png" alt="1603012999981"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603013092812.png" alt="1603013092812"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603013240736.png" alt="1603013240736"></p>
+<p>/f/ /v/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603031109162.png" alt="1603031109162"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603031158576.png" alt="1603031158576"></p>
+<p>/s/   /z/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603031694099.png" alt="1603031694099"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603031637998.png" alt="1603031637998"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603031783409.png" alt="1603031783409"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603031849163.png" alt="1603031849163"></p>
+<p>/θ/ /ð/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603032996630.png" alt="1603032996630"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603032964186.png" alt="1603032964186"></p>
+<p>/ʃ /  /ʒ/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603206343538.png" alt="1603206343538"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603206449545.png" alt="1603206449545"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603206465835.png" alt="1603206465835"></p>
+<p>/m/  /n/  /ŋ/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603549976942.png" alt="1603549976942"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603550251389.png" alt="1603550251389"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603550301900.png" alt="1603550301900"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603550811069.png" alt="1603550811069"></p>
+<p>/h/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603551264879.png" alt="1603551264879"></p>
+<p>/j/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603551639174.png" alt="1603551639174"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603551722029.png" alt="1603551722029"></p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603551988632.png" alt="1603551988632"></p>
+<p>/r/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603552738569.png" alt="1603552738569"></p>
+<p>/l/</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1603553210314.png" alt="1603553210314"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>复制网页添加版权信息</title>
+    <url>/2020/10/20/%E5%A4%8D%E5%88%B6%E7%BD%91%E9%A1%B5%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E4%BF%A1%E6%81%AF/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addLink</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> body_element = <span class="built_in">document</span>.body;</span><br><span class="line">    <span class="keyword">var</span> selection;</span><br><span class="line">    selection = <span class="built_in">window</span>.getSelection();</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.clipboardData) &#123; <span class="comment">// Internet Explorer</span></span><br><span class="line">        <span class="keyword">var</span> pagelink =<span class="string">"\r\n\r\n 原文出自[ Tz ] 转载请保留原文链接: "</span>+<span class="built_in">document</span>.location.href+<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">var</span> copytext = selection + pagelink;</span><br><span class="line">        <span class="built_in">window</span>.clipboardData.setData (<span class="string">"Text"</span>, copytext);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> pagelink = <span class="string">" 原文出自[ Tz ] 转载请保留原文链接: "</span>+<span class="built_in">document</span>.location.href+<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">var</span> copytext = selection + pagelink;</span><br><span class="line">        <span class="keyword">var</span> newdiv = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">        newdiv.style.position=<span class="string">'absolute'</span>;</span><br><span class="line">        newdiv.style.left=<span class="string">'-99999px'</span>;</span><br><span class="line">        body_element.appendChild(newdiv);</span><br><span class="line">        newdiv.innerHTML = copytext;</span><br><span class="line">        selection.selectAllChildren(newdiv);</span><br><span class="line">        <span class="built_in">window</span>.setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        body_element.removeChild(newdiv);</span><br><span class="line">        &#125;,<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.oncopy = addLink;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>&#39;工作中遇到的问题与解决方法&#39;</title>
+    <url>/2020/10/10/%E5%B7%A5%E4%BD%9C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>问题：自动排序  对每一条数据进行更新  如果数据量大 则会有大量的sql资源</p>
+<p><img src="C:%5CUsers%5C%E5%91%A8%E5%A4%8D%E6%B1%9F%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1602294914480.png" alt="1602294914480"></p>
+<p>解决：因为每次更新都是按顺序循环更新的  所以可以通过数据库的 rownum这个值来进行操作 用一条更新语句来更新</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">update</span>  a <span class="keyword">set</span> sort_no = <span class="keyword">rownum</span>, part_no = <span class="keyword">right</span>(<span class="string">'000000'</span>+ <span class="keyword">CAST</span>((<span class="keyword">rownum</span>) <span class="keyword">as</span> <span class="keyword">NVARCHAR</span>),<span class="number">6</span>)</span><br><span class="line">    <span class="keyword">from</span>( <span class="keyword">select</span> part_no, sort_no, ROW_NUMBER() <span class="keyword">over</span>(<span class="keyword">order</span> <span class="keyword">by</span> sort_no) <span class="keyword">rownum</span> <span class="keyword">from</span> File_Single_Second</span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">    qz_no = <span class="comment">#&#123;qzNo&#125;</span></span><br><span class="line">    <span class="keyword">and</span> category_no = <span class="comment">#&#123;categoryNo&#125;</span></span><br><span class="line">    <span class="keyword">and</span> year_no = <span class="comment">#&#123;yearNo&#125;</span></span><br><span class="line">    <span class="keyword">and</span> mechanism_no = <span class="comment">#&#123;mechanismNo&#125;</span></span><br><span class="line">    <span class="keyword">and</span> term_no = <span class="comment">#&#123;termNo&#125;</span></span><br><span class="line">     ) a</span><br><span class="line">     <span class="comment">#表示每次件号是根据对应的rownumber的值更新的</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>问题：spring循环注入的问题 </p>
+<p>解决：实现spring容器接口 初始化ApplicationContext  在通过ApplicationContext来获取指定的对象  这样就不用注入到容器中某一个类中从而出现循环注入</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nanxiu.manve.common.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.BeansException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContextAware;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Auther</span>: Tz</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2020/09/24/15:02</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>: 通过spring容器来获取bean对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationContextProvider</span> <span class="keyword">implements</span> <span class="title">ApplicationContextAware</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 上下文对象实例</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"static-access"</span>)</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.applicationContext = applicationContext;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取applicationContext</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ApplicationContext <span class="title">getApplicationContext</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> applicationContext;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过name获取 Bean.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">getBean</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getApplicationContext().getBean(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过class获取Bean.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">getBean</span><span class="params">(Class&lt;T&gt; clazz)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getApplicationContext().getBean(clazz);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过name,以及Clazz返回指定的Bean</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> name</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> clazz</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">T <span class="title">getBean</span><span class="params">(String name, Class&lt;T&gt; clazz)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> getApplicationContext().getBean(name, clazz);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这里需要用spring容器来获取bean对象</span></span><br><span class="line">        <span class="comment">//如果用自动注入 会出现循环注入的问题</span></span><br><span class="line">OperationLogsServiceImpl operationLogsService = ApplicationContextProvider.getBean(OperationLogsServiceImpl<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>jsp EL表达式中出现特殊字符 在前端拼接其他字符出现 有  ‘’ 和 “” 会导致字符串错误不是一个完整的字符串</p>
+<p>解决方法 ：</p>
+<p>用jstl核心包中的方法  会自动帮我们字符串中出现的特殊字符转义</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;input type=<span class="string">"hidden"</span> id=<span class="string">"tableData"</span> name=<span class="string">""</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"form-control"</span>  value=<span class="string">"&lt;c:out value='$&#123;tableData&#125;'/&gt;"</span>&gt;</span><br><span class="line">    </span><br><span class="line"> <span class="comment">//在js中在通过</span></span><br><span class="line">    <span class="keyword">var</span> tableDataStr = $(<span class="string">"#tableData"</span>).val();形式获取值 获取的值是转义后的值</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="在vue外部调用vue里methods里的某个方法："><a href="#在vue外部调用vue里methods里的某个方法：" class="headerlink" title="在vue外部调用vue里methods里的某个方法："></a>在vue外部调用vue里methods里的某个方法：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">initAuthApp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        indexApp = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">            el: <span class="string">'#indexApp'</span>,</span><br><span class="line">            data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> &#123;</span><br><span class="line">                    moreQz: (moreQz ? moreQz : <span class="literal">false</span>)</span><br><span class="line">                    , <span class="attr">isAllQzNo</span>: (user_qzNo == <span class="string">'ALL'</span> ? <span class="literal">true</span> : <span class="literal">false</span>)</span><br><span class="line">                    , <span class="attr">userRole</span>: user_role</span><br><span class="line">                    , <span class="attr">authArr</span>: authArr</span><br><span class="line">                    , <span class="attr">userQzNoArr</span>: userQzNoArr</span><br><span class="line">                    , <span class="attr">archivescategorygroupArr</span>: archivescategorygroupArr</span><br><span class="line">                    , <span class="attr">fixedarchivescategorygroupArr</span>: fixedarchivescategorygroupArr</span><br><span class="line">                    , <span class="attr">allqzunitArr</span>: allqzunitArr</span><br><span class="line">                    , <span class="attr">test</span>: <span class="literal">false</span></span><br><span class="line">                    , <span class="attr">archivescategoryArr</span>: archivescategoryArr</span><br><span class="line">                    , <span class="attr">menuView</span>: <span class="string">"index"</span></span><br><span class="line">                    , <span class="attr">archivesCategoryGroupNameArr</span>: archivesCategoryGroupNameArr</span><br><span class="line">                    ,<span class="attr">bianyantype</span>:bianyantypeArr</span><br><span class="line">                    ,<span class="attr">bianyangrouping</span>:bianyangroupingArr</span><br><span class="line">                    ,<span class="attr">user_qzNo</span> : user_qzNo2</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125;,</span><br><span class="line">            mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            beforeUpdate: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            &#125;,</span><br><span class="line">            computed: &#123;&#125;,</span><br><span class="line">            <span class="comment">//主要是下面的代码</span></span><br><span class="line">            mounted()&#123;</span><br><span class="line">                <span class="comment">//表示定义一个a方法 a方法的具体内容就是vue里的方法</span></span><br><span class="line">                <span class="built_in">window</span>.a = <span class="keyword">this</span>.showMenuView</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//然后在vue外部访问在vue定义的方法</span></span><br><span class="line"><span class="comment">//在vue.methods中的方法有接收参数 我们这里也可传参数</span></span><br><span class="line"><span class="built_in">window</span>.a(item);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
 </search>

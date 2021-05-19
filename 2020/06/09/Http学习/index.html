@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Http学习 - Tz</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Tz,"> 
+    <meta name="description" content="状态码304 not modified 没有修改 取的是存在缓存中的内容， 请求时会带着资源的最后修改时间跟请求返回内容做比较
+301， 302， 307
+301：永久重定向 会丢失数据 不会响应第,"> 
+    <meta name="author" content="Tz"> 
+    <link rel="alternative" href="atom.xml" title="Tz" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tz</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Http学习</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Http学习</h1>
+        <div class="stuff">
+            <span>六月 09, 2020</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <p>状态码304 not modified 没有修改 取的是存在缓存中的内容， 请求时会带着资源的最后修改时间跟请求返回内容做比较</p>
+<p>301， 302， 307</p>
+<p>301：永久重定向 会丢失数据 不会响应第一次请求的信息</p>
+<p>302：临时重定向 会丢失数据 会响应第一次请求的信息（重定向默认是302）</p>
+<p>307：301和302的结合 307就是在重定向中依旧保持原有的数据</p>
+<p>“永久重定向（301）”和“临时重定向（302）”并不是那种时间上的“永久和临时”，不是说采用了临时重定向，再关机或者重启之后，重定向的功能就消失了。比如使用搜索引擎搜索“网易”，需要在地址栏输入<a href="http://www.163.net，那么以后即使www.163.net的地址改变了，输入www.163.com服务器会自动链接到新地址www.wangyi.com，那么这时候使用301的话，就等于直接登陆www.wangyi.com，彻底忘记www.163.net的存在。如果是302的话，会先www.163.net，然后www.163.net的服务器返回信息给客户机，你真实需要去的是www.wangyi.com，然后客户机再去跟www.wangyi.com产生链接。" target="_blank" rel="noopener">www.163.net，那么以后即使www.163.net的地址改变了，输入www.163.com服务器会自动链接到新地址www.wangyi.com，那么这时候使用301的话，就等于直接登陆www.wangyi.com，彻底忘记www.163.net的存在。如果是302的话，会先www.163.net，然后www.163.net的服务器返回信息给客户机，你真实需要去的是www.wangyi.com，然后客户机再去跟www.wangyi.com产生链接。</a></p>
+<p>referer: 显示一个地址</p>
+<p>expires:  Wed, 09 Jun 2021 16:00:00 GMT – – 缓存时间 在指定时间内都有效</p>
+<p>cache-control: max-age=60, s-maxage=90 – 强制不缓存</p>
+<h5 id="Http协议与内容压缩"><a href="#Http协议与内容压缩" class="headerlink" title="Http协议与内容压缩:"></a>Http协议与内容压缩:</h5><p>为了提交网页在网络上传输的速度 进行网页的压缩，</p>
+<p>常见压缩：gzip，deflate</p>
+<p>压缩过程：</p>
+<p>客户端(浏览器内核)：接收压缩包-解压-渲染页面</p>
+<p>一般压缩文本文件</p>
+<h4 id="分块传输，持久链接与反向ajax："><a href="#分块传输，持久链接与反向ajax：" class="headerlink" title="分块传输，持久链接与反向ajax："></a>分块传输，持久链接与反向ajax：</h4><p>websocket</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://dl.stream.qqmusic.qq.com/M800000wqy9z0rSegD.mp3?guid=1026087320&vkey=2DA37E51FDEDAFE4D105D1E87CD561A01E9A7281ECD5484AB9553B219171CE02D6B93AD819AE1ECA47FE778A60FF275F2C7F4EFAE45BE06D&uin=0&fromtag=66'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/163/425570952.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='true'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
